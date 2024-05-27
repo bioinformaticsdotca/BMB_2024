@@ -38,7 +38,7 @@ In this module, we'll be taking a look at two of the major ways in which we use 
 
 There is some general information on functional prediction with PICRUSt2 and differential abundance testing with MaAsLin2, ANCOM2 and ALDEx2 below, but during the tutorial, you'll start by preparing and filtering the data that was obtained from QIIME2 at the end of Module 2, then will start PICRUSt2 running. As this may take a long time to run, you can run differential abundance testing on the filtered Module 2 outputs and examine these results before going back to look at the PICRUSt2 results. 
 
-Throughout this module, there are some questions aimed to help your understanding of some of the key concepts. You'll find the [answers](https://github.com/LangilleLab/microbiome_helper/wiki/CBW-2024-Beginner-Module-4:-Functional-prediction-and-additional-analyses#answers) at the bottom of this page, but no one will be marking them. 
+Throughout this module, there are some questions aimed to help your understanding of some of the key concepts. You'll find the [answers](#answers) at the bottom of this page, but no one will be marking them. 
 
 ### Functional prediction with PICRUSt2 
 
@@ -137,6 +137,9 @@ sed -i -e '1 s/Feature/#Feature/' -e '1 s/Taxon/taxonomy/' taxa/taxonomy.tsv
   
 conda deactivate
 ```
+
+**Question 1**: How many ASVs are there in ```taxonomy.tsv```? Is this the same number that are in your feature table (```feature-table.txt```)? Why are they/aren't they the same?
+HINT: you could open these files up in Excel (or similar) and see how many rows there are, or you could use ```less``` with the ```wc -l``` like we did yesterday. Remember that both files have headers!
 
 ## 4.2 Start running PICRUSt2
 
@@ -242,6 +245,8 @@ We're also using the ```paste``` function to add together the full file path of 
 
 Next, we've given the ```sep='\t'``` variable - this time, we're telling the ```read.csv``` function that the file that we're importing is tab-delimited, then we've told it to skip the first line of the file ```skip=1```, and that there is a header ```header=T``` (where T is the same as TRUE). We've skipped the first line because this just reads "# Constructed from biom file" and is not actually data.
 
+**Question 2**: Type in ```asv_table``` or look at it in the "Environment" area in the top right. How many rows are there? Does this make sense to you?
+
 ### Manipulate the feature table
 
 We often find in programming that things are not quite in the format that is expected by the packages that we're using, so we'll make a few modifications to ```asv_table```:
@@ -311,6 +316,8 @@ otu_table(physeq_genus)
 ```
 Take a look at each of these if you want to see what the differences were in each step!
 
+**Question 3**: How does the number of genera compare with the number of ASVs?
+
 ## 4.4 Run MaAsLin2
 
 Now that we've prepared the phyloseq objects, it's time to run our first differential abundance test. Each of the differential abundance tools expects data to be normalised in a different way, and we're going to run MaAsLin2 with rarefied data.
@@ -341,6 +348,8 @@ MaAsLin2 will save the results into a folder, so you can take a look in these fo
 In the columns you'll see: (1) the genus ("feature"), (2) the metadata variable being tested ("metadata"), (3) for categorical features, the specific feature level for which the coefficient and significance of association is being reported ("value"), (4) the model effect size/coefficient value ("coef"), (5) the standard error from the model ("stderr"), (6) the number of samples used in the model for these association values ("N"), (7) the number of samples in which this feature is non-zero ("N.not.0"), (8) the nominal significance of this association ("pval"), and (9) the corrected significance  with p.adjust of this association ("qval"). 
 
 You'll see that by default, MaAsLin2 reports any features with q-value <= 0.25 as being significant. 
+
+**Question 4**: How many taxa does MaAsLin2 say are significantly differentially abundant?
 
 ## 4.5 Run ANCOM2
 
@@ -377,6 +386,8 @@ a_out = a_out[,-1] #remove the duplicated column
 write.csv(a_out, paste(folder, "ANCOM_taxa.csv", sep="")) #save the resulting table as a .csv file
 ```
 
+**Question 5**: How many taxa does ANCOM find are significantly differentially abundant?
+
 ## 4.6 Run ALDEx2
 
 Finally, we'll run ALDEx2. Note that here the first step is to normalise the samples using a CLR normalisation, so you can see how all of the methods require similar steps - normalisation and then testing - but this is done in a slightly different way for each. We then use a Kruskal-Wallis test and a GLM ANOVA on the data, and we can do this test with multiple cores (```useMC=2```). You can see that we're again running this separately for each metadata variable, and then saving the outputs as .csv files:
@@ -400,6 +411,8 @@ physeq_genus_clr = microbiome::transform(physeq_genus, "clr")
 shapiro.test(as.data.frame(otu_table(physeq_genus_clr))$BB197)
 ```
 Transformations/normalisations of microbiome data are often used to make the usually non-normal microbiome data normal, however, in this case, it is not normal (significant p-value so the null hypothesis that the data are normal can be rejected). This means that we should use the Kruskal-Wallis test results. 
+
+**Question 6**: How many taxa does ALDEx2 find to be significantly differentially abundant?
 
 ## 4.7 Combine and plot differential abundance results from MaAsLin2, ANCOM2 and ALDEx2 for Description_1
 
@@ -459,6 +472,8 @@ To explain what we have just done here a little, we're using a function from the
 
 This ```boxplot_abundance``` function builds upon the R package ggplot2, and we can therefore use additional arguments as we would with ggplot2. These are added with the + and are fairly self explanatory; we have added a title (ggtitle) and a y label (ylab). For the title, we've replaced part of the text with the "\n" which means that a line break has been added in to make this a little more readable. 
 
+**Question 7**: Did it look like there are differences between the two treatments for the taxon that you plotted?
+
 ### Plot DA all taxa
 
 We can also make the same plots within a for loop:
@@ -495,11 +510,11 @@ For loops can get incredibly complicated, can do lots of things, and can be nest
 
 #### Back to the results
 
-**Question**: Are there any taxa that you're surprised to see are significantly differentially abundant? Why?
+**Question 8**: Are there any taxa that you're surprised to see are significantly differentially abundant? Why?
 
 ## 4.8 Combine and plot differential abundance results from MaAsLin2, ANCOM2 and ALDEx2 for Description_3
 
-Now see if you can repeat these steps for Description_3! I've added the code from above here, but if you're struggling then the code you'll need is in the [answers](https://github.com/LangilleLab/microbiome_helper/wiki/CBW-2024-Beginner-Module-4:-Functional-prediction-and-additional-analyses#answers).
+Now see if you can repeat these steps for Description_3! I've added the code from above here, but if you're struggling then the code you'll need is in the [answers](#answers).
 
 Import the MaAsLin2 results:
 ```
@@ -582,7 +597,7 @@ We're going to focus on the pathways file today, because it groups the other fun
 
 Note that if we were interested in seeing which ASVs contribute to the functions within each sample then we would include the ```--stratified``` option when running PICRUSt2, although this increases the time taken to run. 
 
-So now try to do the same for the PICRUSt2 results as you did for the taxa results above in RStudio. I've again copied that code below here to avoid you needing to scroll up and down, and the code needed is in the [answers](https://github.com/LangilleLab/microbiome_helper/wiki/CBW-2024-Beginner-Module-4:-Functional-prediction-and-additional-analyses#answers) if you are struggling.
+So now try to do the same for the PICRUSt2 results as you did for the taxa results above in RStudio. I've again copied that code below here to avoid you needing to scroll up and down, and the code needed is in the [answers](#answers) if you are struggling.
 
 Read in the feature table:
 ```
@@ -649,8 +664,8 @@ plot_ordination(physeq_pwy_relabun, ps.ord, type="samples", color="Description_1
 ```
 You should notice that we've chosen to colour the samples by Description_1 and the shape is based on Description_3. 
 
-**Question**: Can you see differences between the samples based on the metadata variables? 
-**Question**: What are these differences like compared with those seen in the taxonomy data? 
+**Question 9**: Can you see differences between the samples based on the metadata variables?\
+**Question 10**: What are these differences like compared with those seen in the taxonomy data? 
 
 ## 4.11 Run PICRUSt2 differential abundance
 
@@ -662,7 +677,7 @@ physeq_rare_pwy = rarefy_even_depth(physeq_pwy, sample.size = min(sample_sums(ph
 physeq_rare_pwy_top_100 = prune_taxa(top_100_abun, physeq_rare_pwy)
 ```
 
-But then I've again, I've copied in the code that we used above but you should modify it to work with your pathway phyloseq objects. Code that works is in the [answers](https://github.com/LangilleLab/microbiome_helper/wiki/CBW-2024-Beginner-Module-4:-Functional-prediction-and-additional-analyses#answers). 
+But then I've again, I've copied in the code that we used above but you should modify it to work with your pathway phyloseq objects. Code that works is in the [answers](#answers). 
 
 Get the feature tables and metadata:
 ```
@@ -720,7 +735,7 @@ write.csv(kw.test.d3, paste(folder, "ALDEx2_taxa_Description_3.csv", sep=""))
 
 ## 4.12 Combine and plot PICRUSt2 differential abundance results from MaAsLin2, ANCOM2 and ALDEx2 for Description_1
 
-Again, I'll give the code that was used above, but you'll need to modify it. Code that works can be found in the [answers](https://github.com/LangilleLab/microbiome_helper/wiki/CBW-2024-Beginner-Module-4:-Functional-prediction-and-additional-analyses#answers).
+Again, I'll give the code that was used above, but you'll need to modify it. Code that works can be found in the [answers](#answers).
 
 Import the MaAsLin2 results:
 ```
@@ -828,6 +843,31 @@ for(i in 1:length(taxa)) {
 
 # Answers
 
+**Question 1**: How many ASVs are there in ```taxonomy.tsv```? Is this the same number that are in your feature table (```feature-table.txt```)? Why are they/aren't they the same?
+HINT: you could open these files up in Excel (or similar) and see how many rows there are, or you could use ```less``` with the ```wc -l``` like we did yesterday. Remember that both files have headers!
+```taxonomy.tsv``` has 20,229 rows, so 20,228 ASVs. ```feature_table.txt``` has 391 rows but two header rows, so 389 ASVs. This is because we filtered the feature table but haven't filtered the taxonomy table yet. We actually don't need to filter the taxonomy table at this point because when we read it in to R, only the taxa that are included in the feature table will be read in.
+
+**Question 2**: Type in ```asv_table``` or look at it in the "Environment" area in the top right. How many rows are there? Does this make sense to you?
+There should be the same number of rows as there were in the ```feature_table.txt```, but without the ```# Constructed from biom file``` line.
+
+**Question 3**: How does the number of genera compare with the number of ASVs?
+There are a lot fewer genera than ASVs.
+
+**Question 4**: How many taxa does MaAsLin2 say are significantly differentially abundant?
+There are 19 taxa in the Description_1 ```significant_results.tsv``` and three in the Description_3 file.
+
+**Question 5**: How many taxa does ANCOM find are significantly differentially abundant?
+There are 9 taxa with q < 0.1 for Description_1 and 5 for Description_3.
+
+**Question 6**: How many taxa does ALDEx2 find to be significantly differentially abundant?
+Looking at the Kruskal-Wallis false discovery rate corrected p-value (```kw.eBH```), there are no taxa with p < 0.1 for either Description_1 or Description_3.
+
+**Question 7**: Did it look like there are differences between the two treatments for the taxon that you plotted?
+Because you chose the taxon, I can't give the answer here!! Feel free to talk to one of us if you aren't sure on how to interpret these results. 
+
+**Question 8**: Are there any taxa that you're surprised to see are significantly differentially abundant? Why?
+Again, chat to one of us if you aren't sure on how to interpret these results!
+
 ## Answers 4.8 Combine and plot differential abundance results from MaAsLin2, ANCOM2 and ALDEx2 for Description_3
 
 Read in MaAsLin2 results:
@@ -916,6 +956,10 @@ PWY_int = otu_table(pwy_table_num, taxa_are_rows = TRUE)
 physeq_pwy_int = phyloseq(PWY_int, SAMPLE) #make a new phyloseq object with this
 ```
 **Note**: This is also shown above, but I've put it all here again so that it's easier to follow.
+
+**Question 9**: Can you see differences between the samples based on the metadata variables?\
+**Question 10**: What are these differences like compared with those seen in the taxonomy data?\
+Alpha diversity seems to be higher in Rhizosphere than Bulk, and richness is higher in Managed than Forest. Beta diversity shows differences based on Description_1 (colour), and maybe a little on Description_3 (shape), but the differences appear to be more on Description_1. We haven’t done any stats tests here though! 
 
 ## Answers 4.11 Run PICRUSt2 differential abundance
 
