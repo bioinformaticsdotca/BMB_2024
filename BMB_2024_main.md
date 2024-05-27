@@ -51,7 +51,7 @@ Coming soon!
 
 [Module 2 Lecture Slides](https://drive.google.com/file/d/1WXwTim4UK60Xq0wQGU5sDylvpASTVyho/view?usp=sharing)  
 [Module 2 Lab](/BMB_2024_module2)  
-<!-- [Module 2 Lab Markdown]()   -->
+[Module 2 Lab Markdown](https://drive.google.com/file/d/1voGD8uJmZEgU25Y2-fP_bR3WukZGc9k0/view?usp=sharing)  
 
 # Day 2 <a id="day1"></a>
 
@@ -61,7 +61,7 @@ Coming soon!
 
 [Module 3 Lecture Slides]()  
 [Module 3 Lab](/BMB_2024_module3)  
-<!-- [Module 3 Lab Markdown]()   -->
+[Module 3 Lab Markdown](https://drive.google.com/file/d/1vZecURGwtyFx9Cf7UZXrGs_FvhtqCxnT/view?usp=sharing)  
 
 ## Module 4
 
@@ -69,4 +69,4 @@ Coming soon!
 
 [Module 4 Lecture Slides]()  
 [Module 4 Lab](/BMB_2024_module4)  
-<!-- [Module 4 Lab Markdown]()   -->
+[Module 4 Lab Markdown](https://drive.google.com/file/d/1JYlziSZK2Mgqnd7YNPKC1mOYAaGaGQz4/view?usp=sharing)  
