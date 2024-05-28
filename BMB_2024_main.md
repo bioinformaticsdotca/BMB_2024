@@ -67,6 +67,6 @@ Coming soon!
 
 *<font color="#827e9c">Morgan Langille & Robyn Wright</font>*
 
-[Module 4 Lecture Slides]()  
+[Module 4 Lecture Slides](https://drive.google.com/file/d/14huoe4vFn4fNPDonp_-h1sOPQomwN3uv/view?usp=sharing)  
 [Module 4 Lab](/BMB_2024_module4)  
 [Module 4 Lab Markdown](https://drive.google.com/file/d/1JYlziSZK2Mgqnd7YNPKC1mOYAaGaGQz4/view?usp=sharing)  
