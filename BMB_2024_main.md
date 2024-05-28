@@ -59,7 +59,7 @@ Coming soon!
 
 *<font color="#827e9c">Morgan Langille & Monica Alvaro Fuss</font>*
 
-[Module 3 Lecture Slides]()  
+[Module 3 Lecture Slides](https://drive.google.com/file/d/1aIfJFPjj8_Hi1PNdgxIJW7rtXpLsDwCR/view?usp=sharing)  
 [Module 3 Lab](/BMB_2024_module3)  
 [Module 3 Lab Markdown](https://drive.google.com/file/d/1vZecURGwtyFx9Cf7UZXrGs_FvhtqCxnT/view?usp=sharing)  
 
