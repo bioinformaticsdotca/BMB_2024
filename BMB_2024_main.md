@@ -36,7 +36,7 @@ Connecting and properly using a cloud computing cluster at the CBW [here](/BMB_2
 
 # Day 1 <a id="day1"></a>
 
-## Module 1
+## Module 1: Introduction to Sequencing Data Analysis
 
 *<font color="#827e9c">Morgan Langille & Robyn Wright</font>*
 
@@ -44,7 +44,7 @@ Connecting and properly using a cloud computing cluster at the CBW [here](/BMB_2
 [Module 1 Lecture Slides](https://drive.google.com/file/d/1y-lwkW-uzdPj6PAvs5-zcIdHQE55M1U9/view?usp=sharing)  
 [Module 1 Lab](/BMB_2024_module1)  
 
-## Module 2
+## Module 2: Marker Gene Profiling
 
 *<font color="#827e9c">Robyn Wright & Monica Alvaro Fuss</font>*
 
@@ -55,7 +55,7 @@ Connecting and properly using a cloud computing cluster at the CBW [here](/BMB_2
 
 # Day 2 <a id="day1"></a>
 
-## Module 3
+## Module 3: Microbiome Statistics and Visualizations
 
 *<font color="#827e9c">Morgan Langille & Monica Alvaro Fuss</font>*
 
@@ -64,7 +64,7 @@ Connecting and properly using a cloud computing cluster at the CBW [here](/BMB_2
 [Module 3 Lab](/BMB_2024_module3)  
 [Module 3 Lab Markdown](https://drive.google.com/file/d/1vZecURGwtyFx9Cf7UZXrGs_FvhtqCxnT/view?usp=sharing)  
 
-## Module 4
+## Module 4: Functional Prediction and Additional Analyses
 
 *<font color="#827e9c">Morgan Langille & Robyn Wright</font>*
 
